@@ -79,25 +79,24 @@ if Profiledict.__contains__(用户唯一标识符) == False:
     print('未检索到该用户的头像和昵称信息,使用填写值！')
 else:
     [头像图片地址,用户昵称,用户唯一标识符] = Profiledict.get(用户唯一标识符)
+HTTPRE = r'([a-zA-z]+://[^\s]*)'
+正文 = re.sub(HTTPRE, r'[color=#1B95E0]\1', 正文)#自动为所有超链接添加颜色，下同
+正文 = re.sub(HTTPRE, r'\1[/color]', 正文)
+译文 = re.sub(HTTPRE, r'[color=#1B95E0]\1', 译文)
+译文 = re.sub(HTTPRE, r'\1[/color]', 译文)
 
 Template = '[align=center][table=560,#FFFFFF]\n\
 [tr][td][font=-apple-system, BlinkMacSystemFont,Segoe UI, Roboto, Helvetica, Arial, sans-serif][indent]\n\
 [float=left][img=44,44]'+头像图片地址+'[/img][/float][size=15px][b][color=#0F1419]'+用户昵称+'[/color][/b]\n\
 [color=#5B7083]'+用户唯一标识符+'[/color][/size]\n\
 \n\
-[color=#0F1419][size=23px]'+正文+  '''[color=#1B95E0]蓝色链接[/color]正文'''  '[/size]\n\
+[color=#0F1419][size=23px]'+正文+'[/size]\n\
 [size=15px]由 '+君の名は+' 翻译自 英语[/size]\n\
 [size=23px]'+译文+'[/size][/color][/indent][align=center][img=451,254]'+配图链接+'[/img][/align][indent][size=15px][url='+原文地址+'][color=#5B7083]'+推文发布时间+'[/color][/url][/size][/indent][/font]\n\
 [/td][/tr]\n\
 [/table][/align]\n\
 \n\
 '
-
-HTTPRE = r'([a-zA-z]+://[^\s]*)'
-正文 = re.sub(HTTPRE, r'[color=#1B95E0]\1', 正文)#自动为所有超链接添加颜色，下同
-正文 = re.sub(HTTPRE, r'\1[/color]', 正文)
-译文 = re.sub(HTTPRE, r'[color=#1B95E0]\1', 译文)
-译文 = re.sub(HTTPRE, r'\1[/color]', 译文)
 print(Template)
 #pyperclip.copy(Template)
 '''
